@@ -1,8 +1,7 @@
-package com.rxmobileteam.lecture1.data;
+package rxmobileteam.lecture1.data;
 
-import com.rxmobileteam.lecture1.service.Product;
-import com.rxmobileteam.utils.ExerciseNotCompletedException;
 import org.jetbrains.annotations.NotNull;
+import rxmobileteam.lecture1.service.Product;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -24,8 +23,11 @@ public class ProductDao {
      * @return {@code true} if a product was stored, {@code false} otherwise
      */
     public boolean add(@NotNull Product product) {
-        // TODO: implement this method
-        throw new ExerciseNotCompletedException();
+        if (products.contains(product)) {
+            return false;
+        }
+        products.add(product);
+        return true;
     }
 
     /**
@@ -34,8 +36,7 @@ public class ProductDao {
      * @return a set of all stored products
      */
     public Set<Product> findAll() {
-        // TODO: implement this method
-        throw new ExerciseNotCompletedException();
+        return products;
     }
 
 }

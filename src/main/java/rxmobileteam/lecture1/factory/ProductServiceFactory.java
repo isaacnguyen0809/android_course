@@ -1,7 +1,7 @@
-package com.rxmobileteam.lecture1.factory;
+package rxmobileteam.lecture1.factory;
 
-import com.rxmobileteam.lecture1.service.ProductService;
-import com.rxmobileteam.utils.ExerciseNotCompletedException;
+import rxmobileteam.lecture1.service.ProductService;
+import rxmobileteam.utils.ExerciseNotCompletedException;
 
 /**
  * {@link ProductServiceFactory} is used to create an instance of {@link ProductService}
@@ -16,7 +16,6 @@ public class ProductServiceFactory {
      * @return ProductService
      */
     public ProductService createProductService() {
-        // TODO: implement this method
-        throw new ExerciseNotCompletedException();
+        return new ProductService();
     }
 }

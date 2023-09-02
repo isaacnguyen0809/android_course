@@ -1,4 +1,4 @@
-package com.rxmobileteam.utils;
+package rxmobileteam.utils;
 
 /**
  * This is a custom exception that we throw in every method which should be implemented as a part of the exercise.

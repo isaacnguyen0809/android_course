@@ -1,4 +1,4 @@
-package com.rxmobileteam.lecture1.service;
+package rxmobileteam.lecture1.service;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -21,6 +21,14 @@ public class Product {
         this.name = name;
         this.description = description;
         this.price = price;
+    }
+
+    public @NotNull String getName() {
+        return name;
+    }
+
+    public @NotNull String getDescription() {
+        return description;
     }
 
     @Override
