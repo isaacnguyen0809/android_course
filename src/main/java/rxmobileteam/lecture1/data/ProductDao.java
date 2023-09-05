@@ -1,42 +1,35 @@
 package rxmobileteam.lecture1.data;
 
-import org.jetbrains.annotations.NotNull;
+import rxmobileteam.lecture1.interfaces.IProduct;
 import rxmobileteam.lecture1.service.Product;
+import rxmobileteam.utils.ExerciseNotCompletedException;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
-/**
- * {@link ProductDao} represents a Data Access Object (DAO) for products.
- * The implementation is simplified, so it just uses {@link HashSet} to store.
- * <p>
- * todo: 1. Implement a method {@link ProductDao#add(Product)} that store new product into the set
- * todo: 2. Implement a method {@link ProductDao#findAll()} that returns a set of all products
- */
-public class ProductDao {
-    private final Set<Product> products = new HashSet<>();
+public class ProductDao implements IProduct {
 
-    /**
-     * Stores a new product
-     *
-     * @param product a product to store
-     * @return {@code true} if a product was stored, {@code false} otherwise
-     */
-    public boolean add(@NotNull Product product) {
-        if (products.contains(product)) {
-            return false;
+    private final Map<String, Product> products = new HashMap<>();
+
+
+    @Override
+    public void addProduct(String key, Product product) {
+        if (!products.containsKey(key)) {
+            products.put(key, product);
+        } else {
+            throw new ExerciseNotCompletedException();
         }
-        products.add(product);
-        return true;
     }
 
-    /**
-     * Returns all stored products
-     *
-     * @return a set of all stored products
-     */
-    public Set<Product> findAll() {
-        return products;
+
+    @Override
+    public List<Product> searchProduct(String query) {
+        return products.values()
+                .stream()
+                .filter(product -> (product.getName().toLowerCase().contains(query.toLowerCase()) || product.getDescription().toLowerCase().contains(query.toLowerCase())))
+                .collect(Collectors.toList());
     }
 
 }
