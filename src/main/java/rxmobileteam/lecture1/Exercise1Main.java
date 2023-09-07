@@ -13,12 +13,12 @@ public class Exercise1Main {
         Product samsungGalaxyS21 = new Product("3", "Samsung Galaxy S21", "The Samsung Galaxy S21 is a series of Android-based smartphones designed, developed, marketed, and manufactured by Samsung Electronics as part of its Galaxy S series. " + "They collectively serve as the successor to the Galaxy S20 series. The S21 series is the first Galaxy S lineup to support the S Pen stylus, " + "which is only compatible with the Ultra model.", 799.99);
         Product samsungGalaxyS21Ultra = new Product("4", "Samsung Galaxy S21 Ultra", "The Samsung Galaxy S21 Ultra is a series of Android-based smartphones designed, developed, marketed, and manufactured by Samsung Electronics as part of its Galaxy S series. " + "They collectively serve as the successor to the Galaxy S20 series. The S21 series is the first Galaxy S lineup to support the S Pen stylus, " + "which is only compatible with the Ultra model.", 1199.99);
 
-        productService.addProduct("1", iPhone12);
-        productService.addProduct("2", iPhone12Pro);
-        productService.addProduct("3", samsungGalaxyS21);
-        productService.addProduct("4", samsungGalaxyS21Ultra);
+        productService.addProduct(iPhone12.getId(), iPhone12);
+        productService.addProduct(iPhone12Pro.getId(), iPhone12Pro);
+        productService.addProduct(samsungGalaxyS21.getId(), samsungGalaxyS21);
+        productService.addProduct(samsungGalaxyS21Ultra.getId(), samsungGalaxyS21Ultra);
 
-        productService.searchProducts("12").forEach(System.out::println);
+        productService.searchProducts("The iPhone 12 Pro and iPhone 12 Pro Max").forEach(System.out::println);
 
     }
 

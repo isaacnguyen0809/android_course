@@ -23,7 +23,6 @@ public class ProductDao implements IProduct {
         }
     }
 
-
     @Override
     public List<Product> searchProduct(String query) {
         return products.values()
