@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
 import android.widget.Toast
+import android.Manifest
+import android.content.IntentFilter
 import androidx.activity.result.contract.ActivityResultContracts
 import com.example.demo.databinding.ActivityMainBinding
 
@@ -14,25 +16,28 @@ class MainActivity : AppCompatActivity() {
 
     private var counter: Int = 0
 
+    private val smsBroadCastReceiver = SmsBroadCastReceiver()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         binding.tvClick.setOnClickListener {
-            val data: String = "This is the message from MainActivity"
-            val intent = Intent(this, SecondActivity::class.java).apply {
-                putExtra("message", data)
-            }
-//            startActivity(intent)
-//            finish()
-            resultLauncher.launch(intent)
-//            counter++
-//            binding.tvCounter.text = counter.toString()
+            requestPermissionLauncher.launch(Manifest.permission.RECEIVE_SMS)
         }
+
         if (savedInstanceState != null) {
             counter = savedInstanceState.getInt(KEY_COUNTER, 0)
             binding.tvCounter.text = counter.toString()
         }
+        binding.tvCounter.setOnClickListener {
+            val intent = Intent(this, SmsActivity::class.java)
+            resultLauncher.launch(intent)
+        }
+        val intentFilter = IntentFilter("android.provider.Telephony.SMS_RECEIVED")
+        registerReceiver(smsBroadCastReceiver, intentFilter)
+
         Log.d(TAG, "onCreate: ")
     }
 
@@ -41,6 +46,14 @@ class MainActivity : AppCompatActivity() {
         outState.putInt(KEY_COUNTER, counter)
     }
 
+    private val requestPermissionLauncher =
+        registerForActivityResult(ActivityResultContracts.RequestPermission()) { result ->
+            if (result) {
+                Toast.makeText(this, "Permission Success ", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(this, "Permission Denied", Toast.LENGTH_SHORT).show()
+            }
+        }
     private val resultLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == RESULT_OK) {
@@ -78,6 +91,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
+        unregisterReceiver(smsBroadCastReceiver)
         Log.d(TAG, "onDestroy: ")
     }
 
