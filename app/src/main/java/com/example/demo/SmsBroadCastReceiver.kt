@@ -15,12 +15,7 @@ class SmsBroadCastReceiver : BroadcastReceiver() {
         try {
             bundle?.let {
                 val extraMessage = Telephony.Sms.Intents.getMessagesFromIntent(intent)
-                Log.d(TAG, "onReceive: ")
                 extraMessage.forEach { currentMessage ->
-
-                    Log.d(TAG, "onReceive Message ==> ${currentMessage.displayMessageBody}")
-                    Log.d(TAG, "onReceive Message ==> ${currentMessage.displayOriginatingAddress}")
-
                     val smsIntent = Intent(context, SmsActivity::class.java).apply {
                         putExtra(EXTRA_SMS_NO, currentMessage.displayOriginatingAddress)
                         putExtra(EXTRA_SMS_BODY, currentMessage.displayMessageBody)

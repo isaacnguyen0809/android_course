@@ -31,10 +31,13 @@ class MainActivity : AppCompatActivity() {
             counter = savedInstanceState.getInt(KEY_COUNTER, 0)
             binding.tvCounter.text = counter.toString()
         }
+
         binding.tvCounter.setOnClickListener {
             val intent = Intent(this, SmsActivity::class.java)
             resultLauncher.launch(intent)
         }
+
+        // Register broadcast receiver
         val intentFilter = IntentFilter("android.provider.Telephony.SMS_RECEIVED")
         registerReceiver(smsBroadCastReceiver, intentFilter)
 
