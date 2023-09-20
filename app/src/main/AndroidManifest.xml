@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+
     <uses-feature
         android:name="android.hardware.telephony"
         android:required="false" />
@@ -35,15 +38,32 @@
             android:name=".SecondActivity"
             android:exported="false" />
 
+        <service
+            android:name=".service.MyForegroundService"
+            android:exported="false" />
+
+        <service
+            android:name=".service.DemoBoundService"
+            android:exported="false" />
+
+        <activity
+            android:name="com.example.demo.content_provider.ContactsActivity"
+            android:exported="true" />
+
+        <provider
+            android:name=".content_provider.StudentsProvider"
+            android:authorities="com.example.demo.provider"
+            android:exported="true" />
+
         <activity
             android:name=".SmsActivity"
             android:exported="false" />
 
         <receiver
             android:name=".SmsBroadCastReceiver"
-            android:permission="android.permission.BROADCAST_SMS"
             android:enabled="true"
-            android:exported="false" >
+            android:exported="false"
+            android:permission="android.permission.BROADCAST_SMS">
 
         </receiver>
     </application>
