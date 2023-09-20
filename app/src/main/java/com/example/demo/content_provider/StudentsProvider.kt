@@ -71,7 +71,7 @@ class StudentsProvider : ContentProvider() {
 
   override fun getType(uri: Uri) = "vnd.android.cursor.dir/$AUTHORITY.${StudentDatabaseHelper.TABLE_NAME}"
 
-  override fun insert(uri: Uri, values: ContentValues?): Uri? {
+  override fun insert(uri: Uri, values: ContentValues?): Uri {
 
     val db = dbHelper.writableDatabase
 

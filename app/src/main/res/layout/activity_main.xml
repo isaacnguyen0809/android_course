@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
-    <TextView
+    <Button
         android:id="@+id/tvClick"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -46,5 +46,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_start_foreground_service" />
+
+    <Button
+        android:id="@+id/button_to_contacts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="To contacts activity"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_stop_foreground_service" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

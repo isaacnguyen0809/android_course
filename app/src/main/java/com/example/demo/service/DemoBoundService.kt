@@ -7,8 +7,8 @@ import android.os.IBinder
 import android.util.Log
 import kotlin.random.Random
 
-class DemoBoundService: Service() {
-  inner class LocalBinder: Binder() {
+class DemoBoundService : Service() {
+  inner class LocalBinder : Binder() {
     fun getDemoBoundService(): DemoBoundService = this@DemoBoundService
   }
 
@@ -22,7 +22,7 @@ class DemoBoundService: Service() {
   // 0
   override fun onUnbind(intent: Intent?): Boolean {
     log("onUnbind [2] intent=$intent")
-    return true// true->onRebind
+    return true // true->onRebind
   }
 
   // 0 -> 1
