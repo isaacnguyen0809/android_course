@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<dimen name="dp_30">307.20dp</dimen>
+	<dimen name="dp_96">983.04dp</dimen>
+	<dimen name="sp_30">307.20sp</dimen>
+</resources>
