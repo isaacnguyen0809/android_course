@@ -35,11 +35,13 @@ class DemoRecyclerViewActivity : AppCompatActivity() {
     userAdapter.submitList(users)
 
     binding.floatingActionButton.setOnClickListener {
+      val id = UUID.randomUUID().toString()
+
       users = listOf(
         User(
-          id = UUID.randomUUID().toString(),
-          name = "Name #${users.size}",
-          email = "email_${users.size}@gmail.com"
+          id = id,
+          name = "Name #${id.take(5)}",
+          email = "email_${id.take(5)}@gmail.com"
         )
       ) + users
 
