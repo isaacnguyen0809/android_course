@@ -16,6 +16,7 @@ import androidx.core.content.ContextCompat
 import com.example.demo.content_provider.ContactsActivity
 import com.example.demo.databinding.ActivityMainBinding
 import com.example.demo.fragments.DemoFragmentsActivity
+import com.example.demo.recycler_view.DemoRecyclerViewActivity
 import com.example.demo.service.DemoBoundService
 import com.example.demo.service.MyForegroundService
 
@@ -78,6 +79,7 @@ class MainActivity : AppCompatActivity() {
     demoForegroundService()
     demoContentProvider()
     demoFragments()
+    demoRecyclerView()
   }
 
 
@@ -170,6 +172,12 @@ class MainActivity : AppCompatActivity() {
   private fun demoFragments() {
     binding.buttonToFragments.setOnClickListener {
       startActivity(Intent(this, DemoFragmentsActivity::class.java))
+    }
+  }
+
+  private fun demoRecyclerView() {
+    binding.buttonToRecyclerView.setOnClickListener {
+      startActivity(Intent(this, DemoRecyclerViewActivity::class.java))
     }
   }
 

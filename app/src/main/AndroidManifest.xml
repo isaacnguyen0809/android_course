@@ -67,7 +67,9 @@
 
         </receiver>
 
-        <activity android:name=".fragments.DemoFragmentsActivity"/>
+        <activity android:name=".fragments.DemoFragmentsActivity" />
+
+        <activity android:name=".recycler_view.DemoRecyclerViewActivity" />
     </application>
 
 </manifest>
