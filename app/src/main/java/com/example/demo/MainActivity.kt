@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.example.demo.content_provider.ContactsActivity
 import com.example.demo.databinding.ActivityMainBinding
+import com.example.demo.fragments.DemoFragmentsActivity
 import com.example.demo.service.DemoBoundService
 import com.example.demo.service.MyForegroundService
 
@@ -76,6 +77,7 @@ class MainActivity : AppCompatActivity() {
 
     demoForegroundService()
     demoContentProvider()
+    demoFragments()
   }
 
 
@@ -162,6 +164,12 @@ class MainActivity : AppCompatActivity() {
   private fun demoContentProvider() {
     binding.buttonToContacts.setOnClickListener {
       startActivity(Intent(this, ContactsActivity::class.java))
+    }
+  }
+
+  private fun demoFragments() {
+    binding.buttonToFragments.setOnClickListener {
+      startActivity(Intent(this, DemoFragmentsActivity::class.java))
     }
   }
 
