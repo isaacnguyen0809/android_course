@@ -27,6 +27,7 @@ object UserDiffUtilItemCallback : DiffUtil.ItemCallback<User>() {
 // plus(+) -> add items
 class UserAdapter(
   private val onRemoveItem: (User) -> Unit,
+  private val onClickItem: (User) -> Unit,
 ) : ListAdapter<User, UserAdapter.VH>(UserDiffUtilItemCallback) {
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
     val binding = UserItemLayoutBinding.inflate(
@@ -45,6 +46,13 @@ class UserAdapter(
         val pos = adapterPosition
         if (pos != RecyclerView.NO_POSITION) {
           onRemoveItem(getItem(pos))
+        }
+      }
+
+      itemView.setOnClickListener {
+        val pos = adapterPosition
+        if (pos != RecyclerView.NO_POSITION) {
+          onClickItem(getItem(pos))
         }
       }
     }

@@ -1,6 +1,7 @@
 package com.example.demo.recycler_view
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -13,7 +14,8 @@ class DemoRecyclerViewActivity : AppCompatActivity() {
 
   private val userAdapter by lazy(NONE) {
     UserAdapter(
-      onRemoveItem = ::onRemoveItem
+      onRemoveItem = ::onRemoveItem,
+      onClickItem = ::onClickItem,
     )
   }
 
@@ -53,6 +55,20 @@ class DemoRecyclerViewActivity : AppCompatActivity() {
 
   private fun onRemoveItem(user: User) {
     users = users.filter { it.id != user.id }
+    userAdapter.submitList(users)
+  }
+
+  private fun onClickItem(user: User) {
+    Toast.makeText(this, "Clicked $user", Toast.LENGTH_SHORT).show()
+    users = users.map { item ->
+      if (item.id == user.id) {
+        item.copy(
+          name = item.name + UUID.randomUUID().toString().take(2)
+        )
+      } else {
+        item
+      }
+    }
     userAdapter.submitList(users)
   }
 
