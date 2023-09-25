@@ -21,7 +21,7 @@ class Fraction private constructor(
 
     //region unary operators
     // TODO: "+fraction" operator
-    operator fun unaryPlus(): Fraction = Fraction(+numerator, +denominator)
+    operator fun unaryPlus(): Fraction = Fraction(numerator, denominator)
 
     // TODO: "-fraction" operator
     operator fun unaryMinus(): Fraction = Fraction(-numerator, denominator)
@@ -30,11 +30,11 @@ class Fraction private constructor(
     //region plus operators
     // TODO: "fraction+fraction" operator
     operator fun plus(other: Fraction): Fraction =
-        Fraction(numerator * other.denominator + denominator * other.numerator, denominator * other.denominator)
+        of(numerator * other.denominator + denominator * other.numerator, denominator * other.denominator)
 
     // TODO: "fraction+number" operator
     operator fun plus(other: Number): Fraction =
-        Fraction((numerator + other.toDouble() * denominator).toInt(), denominator)
+        of((numerator + other.toDouble() * denominator).toInt(), denominator)
     //endregion
 
     //region times operators
@@ -48,11 +48,11 @@ class Fraction private constructor(
 
     // TODO: Compare two fractions
     override fun compareTo(other: Fraction): Int {
-        val y =
+        val compareValue =
             (numerator * other.denominator - denominator * other.numerator).toDouble() / (denominator * other.denominator).toDouble()
         return when {
-            y < 0 -> -1
-            y > 0 -> 1
+            compareValue < 0 -> -1
+            compareValue > 0 -> 1
             else -> 0
         }
     }
@@ -226,7 +226,7 @@ fun main() {
 
     // Range
     // Because we implemented Comparable<Fraction>, we can use Fraction in ranges
-    val range = Fraction.of(1, 2) ..  Fraction.of(2, 3)
+    val range = Fraction.of(1, 2)..Fraction.of(2, 3)
     println("1/2 in range 1/2..2/3: ${Fraction.of(1, 2) in range}") // "in" operator is containing
     println("2/3 in range 1/2..2/3: ${Fraction.of(2, 3) in range}")
     println("3/3 in range 1/2..2/3: ${Fraction.of(3, 3) in range}")
