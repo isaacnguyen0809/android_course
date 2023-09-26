@@ -1,16 +1,15 @@
 package com.isaac.android_exercies_music_player
 
-import android.Manifest.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.Service
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
+import android.media.MediaPlayer
 import android.os.Build
 import android.os.IBinder
-import android.util.Log
 import androidx.core.app.NotificationCompat
-import java.security.Permission
 
 class MusicService : Service() {
 
@@ -24,20 +23,46 @@ class MusicService : Service() {
         createNotificationChannel()
     }
 
+    private var mediaPlayer: MediaPlayer? = null
+
     override fun onBind(intent: Intent?): IBinder? = null
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         val notification = NotificationCompat.Builder(
             this, CHANNEL_ID
-        ).setSmallIcon(R.mipmap.ic_launcher)
+        ).setSmallIcon(R.drawable.ic_launcher_foreground)
             .setContentTitle("Music Service")
-            .setContentText("Content text")
-            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+            .setContentText("Foreground service is running")
+            .setColor(Color.CYAN)
+            .setPriority(NotificationCompat.PRIORITY_HIGH)
+            .setSilent(true)
             .build()
 
+        when (intent?.getStringExtra("ACTION")) {
+            "PLAY" -> {
+                if (mediaPlayer == null) {
+                    mediaPlayer = MediaPlayer.create(this, R.raw.circle_post_malone).apply {
+                        this?.let {
+                            start()
+                        }
+                    }
+                } else {
+                    mediaPlayer?.start()
+                }
+            }
+
+            "PAUSE" -> mediaPlayer?.pause()
+        }
+
         startForeground(FOREGROUND_ID, notification)
-        Log.d("DUCKHANH", "onStartCommand: asdasdd")
         return START_STICKY
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mediaPlayer?.stop()
+        mediaPlayer?.release()
+        mediaPlayer = null
     }
 
     private fun createNotificationChannel() {

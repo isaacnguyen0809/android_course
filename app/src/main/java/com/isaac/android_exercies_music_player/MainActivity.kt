@@ -21,15 +21,27 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         networkReceiver = NetworkReceiver()
         registerReceiver(networkReceiver, IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION))
-        binding.play.setOnClickListener {
-            ContextCompat.startForegroundService(this, Intent(applicationContext, MusicService::class.java))
-        }
-        binding.stop.setOnClickListener {
-            stopService(Intent(this, MusicService::class.java))
-        }
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.POST_NOTIFICATIONS), 0)
         }
+
+        binding.play.setOnClickListener {
+            ContextCompat.startForegroundService(this, Intent(applicationContext, MusicService::class.java).apply {
+                putExtra("ACTION", "PLAY")
+            })
+        }
+
+        binding.pause.setOnClickListener {
+            ContextCompat.startForegroundService(this, Intent(applicationContext, MusicService::class.java).apply {
+                putExtra("ACTION", "PAUSE")
+            })
+        }
+
+        binding.stop.setOnClickListener {
+            stopService(Intent(this, MusicService::class.java))
+        }
+
     }
 
     override fun onDestroy() {
