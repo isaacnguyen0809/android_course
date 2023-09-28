@@ -70,6 +70,7 @@
         <activity android:name=".fragments.DemoFragmentsActivity" />
 
         <activity android:name=".recycler_view.DemoRecyclerViewActivity" />
+        <activity android:name="com.example.demo.customview.DemoCustomViewActivity" />
     </application>
 
 </manifest>

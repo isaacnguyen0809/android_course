@@ -14,6 +14,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.example.demo.content_provider.ContactsActivity
+import com.example.demo.customview.DemoCustomViewActivity
 import com.example.demo.databinding.ActivityMainBinding
 import com.example.demo.fragments.DemoFragmentsActivity
 import com.example.demo.recycler_view.DemoRecyclerViewActivity
@@ -80,8 +81,8 @@ class MainActivity : AppCompatActivity() {
     demoContentProvider()
     demoFragments()
     demoRecyclerView()
+    demoCustomView()
   }
-
 
   override fun onSaveInstanceState(outState: Bundle) {
     super.onSaveInstanceState(outState)
@@ -180,6 +181,13 @@ class MainActivity : AppCompatActivity() {
       startActivity(Intent(this, DemoRecyclerViewActivity::class.java))
     }
   }
+
+  private fun demoCustomView() {
+    binding.buttonToCustomView.setOnClickListener {
+      startActivity(Intent(this, DemoCustomViewActivity::class.java))
+    }
+  }
+
 
   companion object {
     private const val TAG = "MainActivity"
