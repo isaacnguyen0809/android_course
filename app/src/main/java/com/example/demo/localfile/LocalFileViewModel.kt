@@ -42,7 +42,6 @@ class LocalFileViewModel(private val application: Application) : AndroidViewMode
     fun saveImageExternal(bitmap: Bitmap) {
         val fileName = "${System.currentTimeMillis()}"
         var fos: OutputStream? = null
-        var uri: Uri? = null
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             application.applicationContext.contentResolver?.also { resolver ->
                 val contentValues = ContentValues().apply {
@@ -50,12 +49,9 @@ class LocalFileViewModel(private val application: Application) : AndroidViewMode
                     put(MediaStore.MediaColumns.MIME_TYPE, "image/jpeg")
                     put(MediaStore.MediaColumns.RELATIVE_PATH, ANDROID_RELATIVE_PATH)
                 }
-                val imageUri = resolver.insert(
-                    MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-                    contentValues
-                )
+                val imageUri: Uri? =
+                    resolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues)
                 fos = imageUri?.let { resolver.openOutputStream(it) }
-                uri = imageUri
             }
         } else {
             val directory = File(ANDROID_LEGACY_PATH)
@@ -68,9 +64,9 @@ class LocalFileViewModel(private val application: Application) : AndroidViewMode
                 arrayOf("image/jpeg"), null
             )
             fos = FileOutputStream(image)
-            fos?.use {
-                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, it)
-            }
+        }
+        fos?.use {
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, it)
         }
     }
 }
