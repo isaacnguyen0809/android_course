@@ -20,6 +20,7 @@ import com.example.demo.fragments.DemoFragmentsActivity
 import com.example.demo.recycler_view.DemoRecyclerViewActivity
 import com.example.demo.service.DemoBoundService
 import com.example.demo.service.MyForegroundService
+import com.example.demo.shared_prefs.DemoSharedPrefs
 
 class MainActivity : AppCompatActivity() {
   private lateinit var binding: ActivityMainBinding
@@ -82,6 +83,7 @@ class MainActivity : AppCompatActivity() {
     demoFragments()
     demoRecyclerView()
     demoCustomView()
+    demoSharedPrefs()
   }
 
   override fun onSaveInstanceState(outState: Bundle) {
@@ -188,6 +190,11 @@ class MainActivity : AppCompatActivity() {
     }
   }
 
+  private fun demoSharedPrefs() {
+    binding.buttonToSharedPrefs.setOnClickListener {
+      startActivity(Intent(this, DemoSharedPrefs::class.java))
+    }
+  }
 
   companion object {
     private const val TAG = "MainActivity"
