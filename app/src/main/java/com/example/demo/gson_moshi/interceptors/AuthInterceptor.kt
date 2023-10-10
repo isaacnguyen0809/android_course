@@ -1,13 +1,13 @@
 package com.example.demo.gson_moshi.interceptors
 
+import java.net.HttpURLConnection
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.runBlocking
 import okhttp3.Interceptor
 import okhttp3.Response
-import java.net.HttpURLConnection
 
 class JwtTokenManager {
-  suspend fun getJwtToken(): String? {
+  suspend fun getJwtToken(): String {
     delay(200)
     return "abcd"
   }

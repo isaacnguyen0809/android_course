@@ -1,6 +1,5 @@
 package com.example.demo.data
 
-import com.example.demo.ServiceLocator
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.http.Body
@@ -9,21 +8,21 @@ import retrofit2.http.POST
 
 interface TodoService {
 
-    @GET("/todos/1")
-    fun getTodo(): Call<TodoResponse>
+  @GET("/todos/1")
+  fun getTodo(): Call<TodoResponse>
 
-    @GET("/todos/1")
-    suspend fun getTodoSuspend(): TodoResponse
+  @GET("/todos/1")
+  suspend fun getTodoSuspend(): TodoResponse
 
-    @POST("/posts")
-    suspend fun postTodoApi(@Body todoRequest: TodoRequest): TodoPostResponse
+  @POST("/posts")
+  suspend fun postTodoApi(@Body todoRequest: TodoRequest): TodoPostResponse
 
-    @GET("/posts")
-    suspend fun getTodoList() : List<TodoPostResponse>
+  @GET("/posts")
+  suspend fun getTodoList(): List<TodoPostResponse>
 
-    companion object {
-        fun createTodoService(retrofit: Retrofit): TodoService {
-            return retrofit.create(TodoService::class.java)
-        }
+  companion object {
+    fun createTodoService(retrofit: Retrofit): TodoService {
+      return retrofit.create(TodoService::class.java)
     }
+  }
 }

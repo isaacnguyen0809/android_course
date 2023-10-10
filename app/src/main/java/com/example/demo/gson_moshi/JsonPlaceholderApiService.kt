@@ -5,13 +5,12 @@ import com.example.demo.gson_moshi.interceptors.AuthInterceptor
 import com.example.demo.gson_moshi.interceptors.CustomHeaderInterceptor
 import com.example.demo.gson_moshi.interceptors.JwtTokenManager
 import com.squareup.moshi.Moshi
-import okhttp3.OkHttp
+import java.util.concurrent.TimeUnit
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
-import java.util.concurrent.TimeUnit
 
 interface JsonPlaceholderApiService {
   @GET("todos")

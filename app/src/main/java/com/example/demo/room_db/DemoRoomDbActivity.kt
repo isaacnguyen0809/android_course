@@ -14,10 +14,9 @@ import com.example.demo.databinding.ActivityDemoRoomDbBinding
 import com.example.demo.room_db.db.MyAppDb
 import com.example.demo.room_db.entities.NoteEntity
 import com.example.demo.room_db.entities.UserAndNotes
-import com.example.demo.room_db.entities.UserEntity
-import kotlinx.coroutines.launch
 import kotlin.LazyThreadSafetyMode.NONE
 import kotlin.random.Random
+import kotlinx.coroutines.launch
 
 class DemoRoomDbViewModel(application: Application) : AndroidViewModel(application) {
   val userAndNotesOf1LiveData: LiveData<UserAndNotes?> =
@@ -42,7 +41,7 @@ class DemoRoomDbViewModel(application: Application) : AndroidViewModel(applicati
     viewModelScope.launch {
       val db = MyAppDb.getInstance(getApplication())
 
-     db.withTransaction {
+      db.withTransaction {
         db.noteDao()
           .getLastByUserId(userId = 1)
           ?.let {

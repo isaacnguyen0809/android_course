@@ -9,25 +9,25 @@ import androidx.fragment.app.activityViewModels
 import com.example.demo.databinding.FragmentDemoViewmodelBinding
 
 class FragmentDemoViewModel : Fragment() {
-    private var _binding: FragmentDemoViewmodelBinding? = null
-    private val binding get() = _binding!!
+  private var _binding: FragmentDemoViewmodelBinding? = null
+  private val binding get() = _binding!!
 
-    private val viewModel by activityViewModels<DemoViewModel>()
+  private val viewModel by activityViewModels<DemoViewModel>()
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentDemoViewmodelBinding.inflate(inflater, container, false)
-        return binding.root
+  override fun onCreateView(
+    inflater: LayoutInflater,
+    container: ViewGroup?,
+    savedInstanceState: Bundle?
+  ): View {
+    _binding = FragmentDemoViewmodelBinding.inflate(inflater, container, false)
+    return binding.root
+  }
+
+  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    super.onViewCreated(view, savedInstanceState)
+    viewModel.badgeCount.observe(viewLifecycleOwner) {
+      binding.textView3.text = it.toString()
     }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        viewModel.badgeCount.observe(viewLifecycleOwner) {
-            binding.textView3.text = it.toString()
-        }
-    }
+  }
 
 }

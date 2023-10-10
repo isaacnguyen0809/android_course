@@ -1,8 +1,8 @@
 package com.example.demo.gson_moshi
 
-import com.squareup.moshi.Json
 import androidx.annotation.Keep
 import com.google.gson.annotations.SerializedName
+import com.squareup.moshi.Json
 
 @Keep
 data class Student(

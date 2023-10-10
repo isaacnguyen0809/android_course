@@ -9,10 +9,10 @@ import com.example.demo.databinding.ActivityDemoGsonMoshiBinding
 import com.google.gson.Gson
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import kotlin.LazyThreadSafetyMode.NONE
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.launch
 import retrofit2.create
-import kotlin.LazyThreadSafetyMode.NONE
 
 fun Context.readAssetAsText(fileName: String): String = assets.open(fileName)
   .bufferedReader()
