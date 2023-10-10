@@ -5,9 +5,9 @@ import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.viewmodel.viewModelFactory
-import com.example.demo.data.TodoRequest
-import com.example.demo.data.TodoServiceLocator
 import com.example.demo.databinding.ActivityDemoApiBinding
+import com.example.demo.demo_api.data.TodoRequest
+import com.example.demo.demo_api.data.TodoServiceLocator
 
 
 class DemoApiActivity : AppCompatActivity() {

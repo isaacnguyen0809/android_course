@@ -4,9 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.demo.data.TodoRequest
-import com.example.demo.data.TodoResponse
-import com.example.demo.data.TodoService
+import com.example.demo.demo_api.data.TodoRequest
+import com.example.demo.demo_api.data.TodoResponse
+import com.example.demo.demo_api.data.TodoService
 import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback

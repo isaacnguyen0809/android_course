@@ -1,7 +1,7 @@
 package com.example.demo.demo_api
 
-import com.example.demo.data.TodoPostResponse
-import com.example.demo.data.TodoResponse
+import com.example.demo.demo_api.data.TodoPostResponse
+import com.example.demo.demo_api.data.TodoResponse
 
 sealed class TodoStateApi {
   data object Loading : TodoStateApi()
