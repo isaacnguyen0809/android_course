@@ -1,6 +1,8 @@
 package com.example.demo.unsplash.feature.search
 
-import androidx.viewbinding.ViewBinding
+import com.example.demo.databinding.FragmentSearchBinding
 import com.example.demo.unsplash.core.BaseFragment
 
-class SearchFragment : BaseFragment<ViewBinding>(TODO())
+class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding::inflate) {
+
+}
