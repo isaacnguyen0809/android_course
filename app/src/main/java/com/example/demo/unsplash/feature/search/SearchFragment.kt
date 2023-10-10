@@ -9,6 +9,9 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
+    binding.toolbar.setNavigationOnClickListener {
+      parentFragmentManager.popBackStack()
+    }
   }
 
 }

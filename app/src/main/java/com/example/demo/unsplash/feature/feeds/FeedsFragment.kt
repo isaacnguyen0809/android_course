@@ -20,7 +20,7 @@ class FeedsFragment : BaseFragment<FragmentFeedsBinding>(FragmentFeedsBinding::i
         addToBackStack("search")
 
         replace<SearchFragment>(
-          containerViewId = R.id.fragment_container,
+          containerViewId = R.id.container_view,
           tag = SearchFragment::class.java.simpleName,
         )
       }
