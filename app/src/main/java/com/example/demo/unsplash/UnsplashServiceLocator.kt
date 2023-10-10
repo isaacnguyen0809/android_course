@@ -3,6 +3,7 @@ package com.example.demo.unsplash
 import androidx.annotation.MainThread
 import com.example.demo.BuildConfig
 import com.example.demo.unsplash.data.remote.UnsplashApiService
+import com.example.demo.unsplash.data.remote.interceptor.AuthorizationInterceptor
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import java.util.concurrent.TimeUnit
@@ -37,6 +38,9 @@ object UnsplashServiceLocator {
       }
     }
 
+  private val authorizationInterceptor: AuthorizationInterceptor
+    get() = AuthorizationInterceptor()
+
   private val retrofit: Retrofit by lazy {
     Retrofit.Builder()
       .baseUrl(UNSPLASH_BASE_URL)
@@ -53,6 +57,7 @@ object UnsplashServiceLocator {
       .readTimeout(30, TimeUnit.SECONDS)
       .writeTimeout(30, TimeUnit.SECONDS)
       .addNetworkInterceptor(httpLoggingInterceptor)
+      .addInterceptor(authorizationInterceptor)
       .build()
   }
 

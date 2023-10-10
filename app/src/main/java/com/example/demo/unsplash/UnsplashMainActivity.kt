@@ -4,10 +4,12 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.add
 import androidx.fragment.app.commit
+import androidx.lifecycle.lifecycleScope
 import com.example.demo.R
 import com.example.demo.databinding.UnsplashMainActivityBinding
 import com.example.demo.unsplash.feature.feeds.FeedsFragment
 import kotlin.LazyThreadSafetyMode.NONE
+import kotlinx.coroutines.launch
 
 class UnsplashMainActivity : AppCompatActivity() {
   private val binding by lazy(NONE) { UnsplashMainActivityBinding.inflate(layoutInflater) }
