@@ -21,7 +21,7 @@ class UnsplashMainActivity : AppCompatActivity() {
         setReorderingAllowed(true)
 
         add<FeedsFragment>(
-          containerViewId = R.id.fragment_container,
+          containerViewId = R.id.container_view,
           tag = FeedsFragment::class.java.simpleName,
         )
       }
