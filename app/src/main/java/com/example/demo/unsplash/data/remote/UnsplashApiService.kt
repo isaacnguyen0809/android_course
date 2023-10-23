@@ -1,8 +1,8 @@
 package com.example.demo.unsplash.data.remote
 
 import com.example.demo.unsplash.data.remote.response.CollectionItemResponse
+import com.example.demo.unsplash.data.remote.response.PhotosResponseItem
 import com.example.demo.unsplash.data.remote.response.SearchPhotoResult
-import com.example.demo.unsplash.data.remote.response.TagResponse
 import retrofit2.Retrofit
 import retrofit2.create
 import retrofit2.http.GET
@@ -23,6 +23,13 @@ interface UnsplashApiService {
     @Query("page") page: Int,
     @Query("per_page") perPage: Int,
   ): SearchPhotoResult
+
+  @GET("photos")
+  suspend fun getPhotos(
+    @Query("order_by") orderBy: String,
+    @Query("page") page: Int,
+    @Query("per_page") perPage: Int,
+  ): List<PhotosResponseItem>
 
 
   companion object {
